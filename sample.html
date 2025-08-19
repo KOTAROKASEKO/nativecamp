@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「look」と「sound」の使い方マスター！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .tab-button.active {
+            border-color: #3b82f6; /* blue-500 */
+            background-color: #eff6ff; /* blue-50 */
+            color: #2563eb; /* blue-600 */
+        }
+        .quiz-option {
+            transition: all 0.2s ease-in-out;
+        }
+        .quiz-option.selected {
+            background-color: #dbeafe; /* blue-200 */
+            border-color: #3b82f6; /* blue-500 */
+        }
+        .correct-answer {
+            background-color: #dcfce7; /* green-100 */
+        }
+        .incorrect-answer {
+            background-color: #fee2e2; /* red-100 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-8 max-w-4xl">
+        
+        <!-- ヘッダー -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">「look」と「sound」の使い方マスター！</h1>
+            <p class="mt-3 text-lg text-gray-600">「〜に見える」「〜に聞こえる」を使いこなそう！</p>
+        </header>
+
+        <main class="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+            
+            <!-- 説明セクション -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-700 border-l-4 border-blue-500 pl-4 mb-6">基本の使い方</h2>
+                
+                <div class="space-y-8">
+                    <!-- look / sound + 形容詞 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-500 mb-2">① look / sound + <span class="text-red-500">形容詞</span></h3>
+                        <p class="mb-4">見た目や音の「様子」や「状態」を表します。「〜な感じに見える/聞こえる」という意味です。</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <p class="font-bold text-lg">You <span class="underline decoration-blue-400 decoration-wavy">look</span> happy.</p>
+                                <p class="text-gray-600">あなたは幸せ<span class="font-bold">そうに見える</span>。</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <p class="font-bold text-lg">That idea <span class="underline decoration-green-400 decoration-wavy">sounds</span> great.</p>
+                                <p class="text-gray-600">その考えは素晴らし<span class="font-bold">そうに聞こえる</span>（→よさそうですね）。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- look like / sound like + 名詞 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-500 mb-2">② look like / sound like + <span class="text-red-500">名詞</span></h3>
+                        <p class="mb-4">見た目や音が「何かに似ているか」を表します。「（名詞）のように見える/聞こえる」という意味です。</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <p class="font-bold text-lg">He <span class="underline decoration-blue-400 decoration-wavy">looks like</span> his father.</p>
+                                <p class="text-gray-600">彼はお父さん<span class="font-bold">のように見える（→似ている）</span>。</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <p class="font-bold text-lg">It <span class="underline decoration-green-400 decoration-wavy">sounds like</span> a good plan.</p>
+                                <p class="text-gray-600">それは良い計画<span class="font-bold">のように聞こえる</span>。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- まとめテーブル -->
+            <section class="mb-12">
+                 <h2 class="text-2xl font-bold text-gray-700 border-l-4 border-blue-500 pl-4 mb-6">早わかりチャート</h2>
+                 <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-3 font-bold uppercase text-gray-600 border border-gray-300">使い方</th>
+                                <th class="p-3 font-bold uppercase text-gray-600 border border-gray-300">意味</th>
+                                <th class="p-3 font-bold uppercase text-gray-600 border border-gray-300">後ろに続く言葉</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 font-bold border border-gray-200">look / sound</td>
+                                <td class="p-3 border border-gray-200">〜に 見える / 聞こえる</td>
+                                <td class="p-3 border border-gray-200 text-red-500 font-bold">形容詞 (happy, great など)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 font-bold border border-gray-200">look like / sound like</td>
+                                <td class="p-3 border border-gray-200">〜のように 見える / 聞こえる</td>
+                                <td class="p-3 border border-gray-200 text-red-500 font-bold">名詞 (his father, a plan など)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+            </section>
+
+            <!-- クイズセクション -->
+            <section>
+                <h2 class="text-2xl font-bold text-gray-700 border-l-4 border-blue-500 pl-4 mb-6">力だめしクイズ！</h2>
+                <div id="quiz-container" class="space-y-6">
+                    <!-- クイズはJSで生成 -->
+                </div>
+                <div class="text-center mt-8">
+                    <button id="check-answers-btn" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-md hover:bg-blue-600 transition-transform transform hover:scale-105">
+                        答え合わせ
+                    </button>
+                    <p id="quiz-result" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "That cake (     ) delicious.",
+                options: ["looks", "looks like"],
+                answer: "looks",
+                explanation: "delicious (おいしい) は形容詞なので、like は不要です。"
+            },
+            {
+                question: "This music (     ) a famous song.",
+                options: ["sounds", "sounds like"],
+                answer: "sounds like",
+                explanation: "a famous song (有名な歌) は名詞なので、like が必要です。"
+            },
+            {
+                question: "You (     ) tired. Are you okay?",
+                options: ["look", "look like"],
+                answer: "look",
+                explanation: "tired (疲れている) は形容詞なので、like は不要です。"
+            },
+            {
+                question: "Your story (     ) interesting.",
+                options: ["sounds", "sounds like"],
+                answer: "sounds",
+                explanation: "interesting (おもしろい) は形容詞なので、like は不要です。"
+            },
+            {
+                question: "That cloud (     ) a sheep.",
+                options: ["looks", "looks like"],
+                answer: "looks like",
+                explanation: "a sheep (一匹の羊) は名詞なので、like が必要です。"
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        
+        // クイズの表示
+        quizData.forEach((quizItem, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = "bg-gray-50 p-5 rounded-lg border-2 border-transparent";
+            questionDiv.id = `question-${index}`;
+
+            const questionText = document.createElement('p');
+            questionText.className = "text-lg font-semibold mb-4";
+            questionText.textContent = `${index + 1}. ${quizItem.question}`;
+            questionDiv.appendChild(questionText);
+
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = "flex flex-col sm:flex-row gap-3";
+            
+            quizItem.options.forEach(option => {
+                const optionButton = document.createElement('button');
+                optionButton.className = "quiz-option w-full sm:w-auto flex-1 text-left p-3 border-2 rounded-md hover:bg-blue-100";
+                optionButton.textContent = option;
+                optionButton.dataset.questionIndex = index;
+                optionButton.onclick = () => selectOption(index, option);
+                optionsDiv.appendChild(optionButton);
+            });
+            
+            questionDiv.appendChild(optionsDiv);
+
+            const explanationP = document.createElement('p');
+            explanationP.id = `explanation-${index}`;
+            explanationP.className = "mt-3 text-gray-600 hidden";
+            questionDiv.appendChild(explanationP);
+
+            quizContainer.appendChild(questionDiv);
+        });
+
+        const userAnswers = new Array(quizData.length).fill(null);
+
+        function selectOption(questionIndex, option) {
+            userAnswers[questionIndex] = option;
+            const optionButtons = document.querySelectorAll(`button[data-question-index='${questionIndex}']`);
+            optionButtons.forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.textContent === option) {
+                    btn.classList.add('selected');
+                }
+            });
+        }
+
+        // 答え合わせ
+        const checkButton = document.getElementById('check-answers-btn');
+        const quizResult = document.getElementById('quiz-result');
+
+        checkButton.addEventListener('click', () => {
+            let correctCount = 0;
+            quizData.forEach((quizItem, index) => {
+                const questionDiv = document.getElementById(`question-${index}`);
+                const explanationP = document.getElementById(`explanation-${index}`);
+                
+                questionDiv.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (userAnswers[index] === quizItem.answer) {
+                    correctCount++;
+                    questionDiv.classList.add('correct-answer');
+                    explanationP.textContent = `正解！ ${quizItem.explanation}`;
+                } else {
+                    questionDiv.classList.add('incorrect-answer');
+                    explanationP.textContent = `残念！正解は「${quizItem.answer}」です。 ${quizItem.explanation}`;
+                }
+                explanationP.classList.remove('hidden');
+            });
+            quizResult.textContent = `結果: ${quizData.length}問中 ${correctCount}問正解！`;
+        });
+    </script>
+
+</body>
+</html>
