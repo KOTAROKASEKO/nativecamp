@@ -20,6 +20,7 @@
             margin-bottom: 24px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             border: 3px solid #60a5fa; /* 青色の枠 */
+            transition: all 0.3s ease;
         }
         .quiz-title {
             font-weight: 800;
@@ -61,25 +62,53 @@
             font-weight: 500;
             color: #1e40af;
             transition: all 0.2s ease-in-out;
+            cursor: pointer;
         }
         .option-button:hover {
             background-color: #dbeafe;
             transform: translateY(-2px);
         }
+        /* ★★★ 新しく追加したスタイル ★★★ */
+        .option-button.selected {
+            background-color: #93c5fd; /* 選択中の色（少し濃い青） */
+            border-color: #3b82f6;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(60, 130, 246, 0.5);
+        }
+        .option-button.correct {
+            background-color: #a7f3d0; /* 正解の色（緑） */
+            border-color: #10b981;
+            color: #047857;
+        }
+        .option-button.incorrect {
+            background-color: #fecaca; /* 不正解の色（赤） */
+            border-color: #f87171;
+            color: #b91c1c;
+        }
+        .option-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        /* ★★★ ここまで ★★★ */
         .answer {
             display: none; /* 最初は答えを隠す */
             margin-top: 16px;
             padding: 12px;
-            background-color: #dcfce7; /* 明るい緑 */
-            border: 2px solid #22c55e; /* 緑 */
+            background-color: #f3f4f6;
+            border: 2px solid #e5e7eb;
             border-radius: 12px;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #15803d; /* 濃い緑 */
+            color: #374151;
         }
         .answer-span {
             font-weight: 800;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+        }
+        .answer-result {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+            vertical-align: middle;
         }
         .check-button {
             display: block;
@@ -115,14 +144,11 @@
                 <div class="question-number">1</div>
                 <p class="question-text">「あかい ぼうし」はえいごでなんていう？</p>
             </div>
-            <div class="mt-4 pl-14">
+            <div class="mt-4 pl-14 options-container">
                 <div class="text-6xl text-center my-4">👒</div>
                 <button class="option-button">a. led hat</button>
-                <button class="option-button">b. red hat</button>
-                <div class="answer" id="answer-1">
-                    こたえ： <span class="answer-span">b. red hat</span><br>
-                    「あかい」は red だよ！
-                </div>
+                <button class="option-button" data-correct="true">b. red hat</button>
+                <div class="answer" data-explanation="こたえ： <span class='answer-span text-green-700'>b. red hat</span><br>「あかい」は red だよ！"></div>
             </div>
         </div>
 
@@ -132,14 +158,11 @@
                 <div class="question-number">2</div>
                 <p class="question-text">「ほんを よむ」ただしい えいごはどっち？</p>
             </div>
-            <div class="mt-4 pl-14">
+            <div class="mt-4 pl-14 options-container">
                 <div class="text-6xl text-center my-4">📖</div>
-                <button class="option-button">a. read a book</button>
+                <button class="option-button" data-correct="true">a. read a book</button>
                 <button class="option-button">b. lead a book</button>
-                <div class="answer" id="answer-2">
-                    こたえ： <span class="answer-span">a. read a book</span><br>
-                    'r' のおとだね！ lead は「みちびく」っていういみだよ。
-                </div>
+                <div class="answer" data-explanation="こたえ： <span class='answer-span text-green-700'>a. read a book</span><br>'r' のおとだね！ lead は「みちびく」っていういみだよ。"></div>
             </div>
         </div>
         
@@ -149,14 +172,11 @@
                 <div class="question-number">3</div>
                 <p class="question-text">「かるい」っていう いみの えいごはどっち？</p>
             </div>
-            <div class="mt-4 pl-14">
+            <div class="mt-4 pl-14 options-container">
                 <div class="text-6xl text-center my-4">🎈</div>
-                <button class="option-button">a. light</button>
+                <button class="option-button" data-correct="true">a. light</button>
                 <button class="option-button">b. right</button>
-                <div class="answer" id="answer-3">
-                    こたえ： <span class="answer-span">a. light</span><br>
-                    'l' のおとだよ！ right は「みぎ」とか「ただしい」っていういみ。
-                </div>
+                <div class="answer" data-explanation="こたえ： <span class='answer-span text-green-700'>a. light</span><br>'l' のおとだよ！ right は「みぎ」とか「ただしい」っていういみ。"></div>
             </div>
         </div>
 
@@ -166,15 +186,12 @@
                 <div class="question-number">4</div>
                 <p class="question-text">この もようは なーんだ？</p>
             </div>
-            <div class="mt-4 pl-14">
+            <div class="mt-4 pl-14 options-container">
                 <div class="text-6xl text-center my-4">🦓</div>
                 <button class="option-button">a. dot (どっと)</button>
-                <button class="option-button">b. stripe (すとらいぷ)</button>
+                <button class="option-button" data-correct="true">b. stripe (すとらいぷ)</button>
                 <button class="option-button">c. checked (ちぇっく)</button>
-                <div class="answer" id="answer-4">
-                    こたえ： <span class="answer-span">b. stripe (すとらいぷ)</span><br>
-                    しまうまの もようは しましま stripe だね！
-                </div>
+                <div class="answer" data-explanation="こたえ： <span class='answer-span text-green-700'>b. stripe (すとらいぷ)</span><br>しまうまの もようは しましま stripe だね！"></div>
             </div>
         </div>
         
@@ -184,14 +201,11 @@
                 <div class="question-number">5</div>
                 <p class="question-text">「いのる」っていう いみの えいごはどっち？</p>
             </div>
-            <div class="mt-4 pl-14">
+            <div class="mt-4 pl-14 options-container">
                 <div class="text-6xl text-center my-4">🙏</div>
                 <button class="option-button">a. play</button>
-                <button class="option-button">b. pray</button>
-                <div class="answer" id="answer-5">
-                    こたえ： <span class="answer-span">b. pray</span><br>
-                    play は「あそぶ」だね。おとが にていて むずかしい！
-                </div>
+                <button class="option-button" data-correct="true">b. pray</button>
+                <div class="answer" data-explanation="こたえ： <span class='answer-span text-green-700'>b. pray</span><br>play は「あそぶ」だね。おとが にていて むずかしい！"></div>
             </div>
         </div>
 
@@ -202,19 +216,65 @@
     </div>
 
     <script>
-        // 答え合わせボタンがクリックされたときの処理
+        // ★★★ JavaScriptをぜんぶ書き直しました！ ★★★
+
+        // 1. ボタンをおせるようにする
+        const optionButtons = document.querySelectorAll('.option-button');
+        
+        optionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // おされたボタンの、しつもんグループをさがす
+                const container = button.closest('.options-container');
+                if (!container) return;
+
+                // いちど、グループぜんぶの「えらんだよマーク」をけす
+                container.querySelectorAll('.option-button').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+
+                // おされたボタンにだけ「えらんだよマーク」をつける
+                button.classList.add('selected');
+            });
+        });
+
+        // 2. 「こたえあわせ！」ボタンのしょり
         const checkButton = document.getElementById('check-answers-button');
         checkButton.addEventListener('click', () => {
-            // すべての答え要素を取得
-            const answers = document.querySelectorAll('.answer');
-            
-            // 各答えを表示する
-            answers.forEach(answer => {
-                answer.style.display = 'block';
+            const quizCards = document.querySelectorAll('.quiz-card');
+
+            quizCards.forEach(card => {
+                const selectedButton = card.querySelector('.option-button.selected');
+                const correctButton = card.querySelector('.option-button[data-correct="true"]');
+                const answerDiv = card.querySelector('.answer');
+                const explanation = answerDiv.dataset.explanation;
+
+                // ぜんぶのボタンをおせないようにする
+                card.querySelectorAll('.option-button').forEach(btn => btn.disabled = true);
+
+                if (selectedButton) {
+                    // こたえをえらんでいたばあい
+                    if (selectedButton.hasAttribute('data-correct')) {
+                        // せいかい！
+                        selectedButton.classList.add('correct');
+                        answerDiv.innerHTML = `<span class="answer-result">🎉</span> <span class="font-bold text-green-700">せいかい！</span><br>${explanation}`;
+                    } else {
+                        // まちがい…
+                        selectedButton.classList.add('incorrect');
+                        correctButton.classList.add('correct'); // ほんとうのこたえをみせる
+                        answerDiv.innerHTML = `<span class="answer-result">🤔</span> <span class="font-bold text-red-700">おしい！</span><br>${explanation}`;
+                    }
+                } else {
+                    // こたえをえらんでいなかったばあい
+                    correctButton.classList.add('correct'); // こたえだけみせる
+                    answerDiv.innerHTML = `<span class="answer-result">💡</span> ${explanation}`;
+                }
+
+                answerDiv.style.display = 'block';
             });
 
-            // ボタンの文字を変える
-            checkButton.textContent = 'こたえはコレだ！';
+            // ボタンのきのうを「もういちど」にかえる
+            checkButton.textContent = 'もういちど やる！';
+            checkButton.onclick = () => window.location.reload(); // ページをさいしょからよみこむ
         });
     </script>
 
