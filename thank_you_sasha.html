@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Better Listening — Fun Infographic</title>
+  <style>
+    :root {
+      --bg: #0f1226;
+      --card: rgba(255,255,255,0.1);
+      --text: #f7f8ff;
+      --muted: #c8c9e6;
+      --accent1: #8e8cff; /* periwinkle */
+      --accent2: #ffd166; /* warm yellow */
+      --accent3: #6ee7b7; /* mint */
+      --accent4: #f471b5; /* pink */
+      --ring: rgba(255,255,255,0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, #3a2eff44, transparent 60%),
+                  radial-gradient(900px 500px at 110% 10%, #ff8db744, transparent 60%),
+                  radial-gradient(800px 500px at 50% 120%, #70ffd344, transparent 60%),
+                  var(--bg);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: min(1100px, 92vw);
+      margin: 48px auto 96px;
+    }
+
+    header {
+      display: grid; gap: 16px; justify-items: center; text-align: center;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 999px; background: #ffffff1a; backdrop-filter: blur(8px);
+      border: 1px solid #ffffff22; font-size: 14px; color: var(--muted);
+    }
+    .badge svg { width: 16px; height: 16px; }
+
+    h1 {
+      margin: 0; font-size: clamp(28px, 6vw, 52px); letter-spacing: 0.5px;
+      line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+    .subtitle { color: var(--muted); max-width: 70ch; }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 32px; }
+
+    .card {
+      grid-column: span 6;
+      background: linear-gradient(180deg, #ffffff22, #ffffff10);
+      border: 1px solid #ffffff2a;
+      border-radius: var(--radius);
+      padding: 22px 22px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      isolation: isolate;
+    }
+    @media (max-width: 860px) {
+      .card { grid-column: 1 / -1; }
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      border-color: #ffffff55;
+    }
+
+    .nub {
+      position: absolute; inset: -40% auto auto -40%; width: 80%; aspect-ratio: 1/1;
+      border-radius: 50%; filter: blur(40px); opacity: .24; z-index: -1;
+      animation: float 12s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-10px)} }
+
+    .title {
+      display: flex; align-items: center; gap: 12px; font-weight: 800;
+      font-size: 18px; letter-spacing: .3px;
+    }
+    .title .pill { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #0000002e; border: 1px solid #ffffff2e; color: var(--muted); }
+
+    .content { margin-top: 10px; color: #e9e9ff; }
+    .content p { margin: 0.3rem 0; }
+    .content em { color: var(--muted); font-style: normal; opacity: .9; }
+
+    .checklist { margin-top: 10px; display: grid; gap: 8px; }
+    .checklist li { list-style: none; display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+    .dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--ring); display: grid; place-items: center; margin-top: 2px; }
+    .dot span { display: block; width: 8px; height: 8px; border-radius: 999px; background: currentColor; }
+
+    /* Color tags */
+    .a1 { color: var(--accent1); }
+    .a2 { color: var(--accent2); }
+    .a3 { color: var(--accent3); }
+    .a4 { color: var(--accent4); }
+
+    /* Quote card */
+    .quote {
+      grid-column: 1 / -1; margin-top: 10px; padding: 26px; text-align: center;
+      background: linear-gradient(180deg, #ffffff2a, #ffffff10);
+      border: 1px solid #ffffff33; border-radius: var(--radius);
+    }
+    blockquote { margin: 0; font-size: clamp(18px, 3.6vw, 28px); font-weight: 700; }
+    .attribution { color: var(--muted); margin-top: 6px; font-size: 14px; }
+
+    /* Footer strip */
+    footer { margin-top: 26px; display: grid; gap: 14px; justify-items: center; color: var(--muted); }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip { padding: 6px 10px; border-radius: 999px; border: 1px solid #ffffff2e; background: #ffffff14; font-size: 12px; }
+
+    /* Tiny CTA */
+    .cta {
+      margin-top: 6px; display: inline-flex; gap: 10px; align-items: center; border-radius: 999px;
+      padding: 10px 14px; border: 1px dashed #ffffff3a; background: #ffffff10; cursor: pointer;
+      user-select: none; transition: background .15s ease, border-color .15s ease;
+    }
+    .cta:hover { background: #ffffff18; border-color: #ffffff66; }
+
+    /* Responsive helper */
+    .hide-sm { display: inline; }
+    @media (max-width: 520px) { .hide-sm { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge" aria-label="Topic badge">
+        <!-- Sparkle Icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z" stroke="currentColor" stroke-width="1.5"/></svg>
+        Better Communication
+      </div>
+      <h1>Become a Powerful Listener</h1>
+      <p class="subtitle">Swap the urge to talk for real connection. Use these micro‑habits to turn any conversation—especially with your partner—into a safe, balanced, two‑way flow.</p>
+    </header>
+
+    <section class="grid" aria-label="Infographic sections">
+      <!-- Card 1 -->
+      <article class="card" aria-labelledby="c1-title">
+        <div class="nub a1" style="background: radial-gradient(closest-side, #8e8cff55, transparent 70%);"></div>
+        <div class="title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" class="a1"/><path d="M8 12h8M12 8v8" stroke="currentColor" class="a1"/></svg>
+          <span id="c1-title">Shift from <em>Replying</em> to <em>Understanding</em></span>
+          <span class="pill">Mindset</span>
+        </div>
+        <div class="content">
+          <p>Ask yourself: <em>“What is she feeling? What does she want me to understand?”</em></p>
+          <ul class="checklist">
+            <li><div class="dot a1"><span></span></div><div>Focus on meaning, not on crafting the perfect comeback.</div></li>
+            <li><div class="dot a1"><span></span></div><div>Let the story finish before you evaluate or solve.</div></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card" aria-labelledby="c2-title">
+        <div class="nub a2" style="background: radial-gradient(closest-side, #ffd16655, transparent 70%);"></div>
+        <div class="title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12c0-4 3-7 7-7s7 3 7 7-3 7-7 7" stroke="currentColor" class="a2"/><path d="M7 13l3 3 6-6" stroke="currentColor" class="a2"/></svg>
+          <span id="c2-title">Active Listening</span>
+          <span class="pill">Technique</span>
+        </div>
+        <div class="content">
+          <p>Reflect emotions + summarize facts.</p>
+          <ul class="checklist">
+            <li><div class="dot a2"><span></span></div><div><strong>Reflect:</strong> “So you felt stressed when your idea got dismissed?”</div></li>
+            <li><div class="dot a2"><span></span></div><div><strong>Summarize:</strong> “What upset you most was the tone in the meeting.”</div></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card" aria-labelledby="c3-title">
+        <div class="nub a3" style="background: radial-gradient(closest-side, #6ee7b755, transparent 70%);"></div>
+        <div class="title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M7 7l2 2M15 15l2 2M7 17l2-2M15 9l2-2" stroke="currentColor" class="a3"/></svg>
+          <span id="c3-title">Practice the Pause</span>
+          <span class="pill">Micro‑habit</span>
+        </div>
+        <div class="content">
+          <p>After she finishes, wait <strong>2–3 seconds</strong> before speaking.</p>
+          <ul class="checklist">
+            <li><div class="dot a3"><span></span></div><div>Signals you’re absorbing, not debating.</div></li>
+            <li><div class="dot a3"><span></span></div><div>Gives your brain time to think after listening.</div></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card" aria-labelledby="c4-title">
+        <div class="nub a4" style="background: radial-gradient(closest-side, #f471b555, transparent 70%);"></div>
+        <div class="title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10z" stroke="currentColor" class="a4"/><path d="M4 12h3M17 12h3" stroke="currentColor" class="a4"/></svg>
+          <span id="c4-title">Spot Your Triggers</span>
+          <span class="pill">Awareness</span>
+        </div>
+        <div class="content">
+          <p>Notice when you tune out—repetition or disagreement are common triggers.</p>
+          <ul class="checklist">
+            <li><div class="dot a4"><span></span></div><div>Remind yourself: <em>“She’s sharing because it matters.”</em></div></li>
+            <li><div class="dot a4"><span></span></div><div>Park solutions; aim for validation first.</div></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card" aria-labelledby="c5-title">
+        <div class="nub a2" style="background: radial-gradient(closest-side, #ffd16655, transparent 70%);"></div>
+        <div class="title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8h14M5 12h10M5 16h6" stroke="currentColor" class="a2"/></svg>
+          <span id="c5-title">Gentle Turn‑Taking</span>
+          <span class="pill">Boundary</span>
+        </div>
+        <div class="content">
+          <p>A loving script for balance:</p>
+          <ul class="checklist">
+            <li><div class="dot a2"><span></span></div><div>“I want to hear you fully. Can we take turns so I can share after you?”</div></li>
+            <li><div class="dot a2"><span></span></div><div>Agree a simple rhythm: <strong>2 minutes each</strong>, then switch.</div></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card" aria-labelledby="c6-title">
+        <div class="nub a3" style="background: radial-gradient(closest-side, #6ee7b755, transparent 70%);"></div>
+        <div class="title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" stroke="currentColor" class="a3"/></svg>
+          <span id="c6-title">Train Outside the Moment</span>
+          <span class="pill">Practice</span>
+        </div>
+        <div class="content">
+          <p>Build the muscle when the stakes are low.</p>
+          <ul class="checklist">
+            <li><div class="dot a3"><span></span></div><div>Summarize podcasts or friends’ stories in one sentence.</div></li>
+            <li><div class="dot a3"><span></span></div><div>Take notes while listening—no composing replies.</div></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Full-width quote / mantra -->
+      <div class="quote" role="group" aria-label="Mantra">
+        <blockquote>Listening is a gift. The more you give it, the more you get it back.</blockquote>
+        <div class="attribution">Make it the vibe of your relationship.</div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="chips" aria-label="Tags">
+        <span class="chip">Mindful Pauses</span>
+        <span class="chip">Reflect &amp; Summarize</span>
+        <span class="chip">Gentle Boundaries</span>
+        <span class="chip">Practice Reps</span>
+      </div>
+      <div class="cta" onclick="alert('Tip saved! Try the 2–3 second pause in your next chat ❤️')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 7-7 7-7-7 7-7z" stroke="currentColor"/></svg>
+        Try the 2–3 second pause <span class="hide-sm">today</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
