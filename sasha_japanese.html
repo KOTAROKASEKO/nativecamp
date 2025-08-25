@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Giving & Receiving Verbs: あげる, くれる, もらう</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        .japanese-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.75rem; /* Larger Japanese text */
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .answer {
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .answer.visible {
+            max-height: 100px; /* Adjust as needed */
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl font-bold text-indigo-600">Mastering Giving & Receiving in Japanese</h1>
+            <p class="text-gray-600 mt-1">Understanding あげる, くれる, and もらう</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Introduction -->
+        <div class="bg-white p-8 rounded-xl shadow-lg mb-12 border border-gray-200">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">The Core Concept: In-Group vs. Out-Group</h2>
+            <p class="text-lg leading-relaxed">In Japanese, the verb you use for "to give" depends on the relationship between the giver and the receiver. Think of it in terms of your "in-group" (私/watashi - me, my family) and an "out-group" (everyone else). The direction of the gift (inward or outward) determines the correct verb.</p>
+        </div>
+
+        <!-- Verbs Grid -->
+        <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
+
+            <!-- Card 1: あげる (ageru) -->
+            <div class="card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <div class="p-8">
+                    <h3 class="japanese-text font-bold text-sky-500">あげる (ageru)</h3>
+                    <p class="text-lg font-semibold text-gray-700 mt-1">To Give (Outward)</p>
+                    <p class="mt-4 text-gray-600">Use <span class="font-bold">ageru</span> when you (or your in-group) give something to someone else (out-group). The action moves <span class="font-bold text-sky-500">away</span> from the speaker.</p>
+                </div>
+                <div class="bg-sky-50 p-8 border-t">
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="text-center">
+                            <div class="bg-sky-200 text-sky-800 rounded-full h-16 w-16 flex items-center justify-center text-lg font-bold">私</div>
+                            <p class="mt-2 font-semibold">Giver (You)</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                        <div class="text-center">
+                            <div class="bg-gray-200 text-gray-800 rounded-full h-16 w-16 flex items-center justify-center text-lg font-bold">友</div>
+                            <p class="mt-2 font-semibold">Receiver</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h4 class="font-semibold text-gray-700 mb-3">Example Sentences:</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-bold japanese-text text-sm">私は友達にプレゼントを<span class="text-sky-500">あげます</span>。</p>
+                            <p class="text-gray-500 text-sm">Watashi wa tomodachi ni purezento o <span class="font-semibold">agemasu</span>.</p>
+                            <p class="text-gray-600 mt-1">I give a present to my friend.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold japanese-text text-sm">母は父にネクタイを<span class="text-sky-500">あげました</span>。</p>
+                            <p class="text-gray-500 text-sm">Haha wa chichi ni nekutai o <span class="font-semibold">agemashita</span>.</p>
+                            <p class="text-gray-600 mt-1">My mother gave a tie to my father.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: くれる (kureru) -->
+            <div class="card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <div class="p-8">
+                    <h3 class="japanese-text font-bold text-emerald-500">くれる (kureru)</h3>
+                    <p class="text-lg font-semibold text-gray-700 mt-1">To Give (Inward)</p>
+                    <p class="mt-4 text-gray-600">Use <span class="font-bold">kureru</span> when someone (out-group) gives something to you (or your in-group). The action moves <span class="font-bold text-emerald-500">towards</span> the speaker.</p>
+                </div>
+                <div class="bg-emerald-50 p-8 border-t">
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="text-center">
+                            <div class="bg-gray-200 text-gray-800 rounded-full h-16 w-16 flex items-center justify-center text-lg font-bold">友</div>
+                            <p class="mt-2 font-semibold">Giver</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                        </svg>
+                        <div class="text-center">
+                            <div class="bg-emerald-200 text-emerald-800 rounded-full h-16 w-16 flex items-center justify-center text-lg font-bold">私</div>
+                            <p class="mt-2 font-semibold">Receiver (You)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h4 class="font-semibold text-gray-700 mb-3">Example Sentences:</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-bold japanese-text text-sm">友達が私にプレゼントを<span class="text-emerald-500">くれます</span>。</p>
+                            <p class="text-gray-500 text-sm">Tomodachi ga watashi ni purezento o <span class="font-semibold">kuremasu</span>.</p>
+                            <p class="text-gray-600 mt-1">My friend gives me a present.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold japanese-text text-sm">先生が弟に本を<span class="text-emerald-500">くれました</span>。</p>
+                            <p class="text-gray-500 text-sm">Sensei ga otouto ni hon o <span class="font-semibold">kuremashita</span>.</p>
+                            <p class="text-gray-600 mt-1">The teacher gave my younger brother a book.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: もらう (morau) -->
+            <div class="card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                <div class="p-8">
+                    <h3 class="japanese-text font-bold text-violet-500">もらう (morau)</h3>
+                    <p class="text-lg font-semibold text-gray-700 mt-1">To Receive</p>
+                    <p class="mt-4 text-gray-600">Use <span class="font-bold">morau</span> when you (or your in-group) receive something from someone. This verb focuses on the <span class="font-bold text-violet-500">act of receiving</span>.</p>
+                </div>
+                <div class="bg-violet-50 p-8 border-t">
+                    <div class="flex items-center justify-center space-x-4">
+                         <div class="text-center">
+                            <div class="bg-gray-200 text-gray-800 rounded-full h-16 w-16 flex items-center justify-center text-lg font-bold">友</div>
+                            <p class="mt-2 font-semibold">Giver</p>
+                        </div>
+                        <div class="text-violet-500 font-bold text-2xl">🎁</div>
+                        <div class="text-center">
+                            <div class="bg-violet-200 text-violet-800 rounded-full h-16 w-16 flex items-center justify-center text-lg font-bold">私</div>
+                            <p class="mt-2 font-semibold">Receiver (You)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h4 class="font-semibold text-gray-700 mb-3">Example Sentences:</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-bold japanese-text text-sm">私は友達にプレゼントを<span class="text-violet-500">もらいます</span>。</p>
+                            <p class="text-gray-500 text-sm">Watashi wa tomodachi ni purezento o <span class="font-semibold">moraimasu</span>.</p>
+                            <p class="text-gray-600 mt-1">I receive a present from my friend.</p>
+                        </div>
+                         <div>
+                            <p class="font-bold japanese-text text-sm">弟は先生に本を<span class="text-violet-500">もらいました</span>。</p>
+                            <p class="text-gray-500 text-sm">Otouto wa sensei ni hon o <span class="font-semibold">moraimashita</span>.</p>
+                            <p class="text-gray-600 mt-1">My younger brother received a book from the teacher.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Quiz Section -->
+    <section class="container mx-auto px-6 py-12">
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-700">Check Your Understanding!</h2>
+            <div class="space-y-8">
+                <!-- Question 1 -->
+                <div class="question-block">
+                    <p class="text-lg mb-2">1. 田中さんは私に花を＿＿＿＿＿＿。</p>
+                    <p class="text-gray-500 mb-4">Tanaka-san wa watashi ni hana o ______.</p>
+                    <button class="toggle-answer-btn bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-600 transition-colors">Show Answer</button>
+                    <div class="answer mt-4 p-4 bg-gray-100 rounded-lg">
+                        <p class="font-bold text-lg text-emerald-600">くれます (kuremasu)</p>
+                        <p class="text-gray-600 mt-1">Explanation: Someone (Tanaka-san) gives something to you (私), so the action is inward. We use くれる.</p>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-block">
+                    <p class="text-lg mb-2">2. 私は妹にお菓子を＿＿＿＿＿＿。</p>
+                    <p class="text-gray-500 mb-4">Watashi wa imouto ni okashi o ______.</p>
+                    <button class="toggle-answer-btn bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-600 transition-colors">Show Answer</button>
+                    <div class="answer mt-4 p-4 bg-gray-100 rounded-lg">
+                        <p class="font-bold text-lg text-sky-600">あげます (agemasu)</p>
+                        <p class="text-gray-600 mt-1">Explanation: You (私) give something to someone else (妹), so the action is outward. We use あげる.</p>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-block">
+                    <p class="text-lg mb-2">3. 私はお母さんに時計を＿＿＿＿＿＿。</p>
+                    <p class="text-gray-500 mb-4">Watashi wa okaasan ni tokei o ______.</p>
+                    <button class="toggle-answer-btn bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-600 transition-colors">Show Answer</button>
+                    <div class="answer mt-4 p-4 bg-gray-100 rounded-lg">
+                        <p class="font-bold text-lg text-violet-600">もらいました (moraimashita)</p>
+                        <p class="text-gray-600 mt-1">Explanation: The sentence focuses on the act of receiving. "I received a watch from my mother." We use もらう.</p>
+                    </div>
+                </div>
+                
+                 <!-- Question 4 -->
+                <div class="question-block">
+                    <p class="text-lg mb-2">4. 友達が私の犬におもちゃを＿＿＿＿＿。</p>
+                    <p class="text-gray-500 mb-4">Tomodachi ga watashi no inu ni omocha o ______.</p>
+                    <button class="toggle-answer-btn bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-600 transition-colors">Show Answer</button>
+                    <div class="answer mt-4 p-4 bg-gray-100 rounded-lg">
+                        <p class="font-bold text-lg text-emerald-600">くれました (kuremashita)</p>
+                        <p class="text-gray-600 mt-1">Explanation: A friend gives something to your dog. Your dog is part of your "in-group", so the action is inward. We use くれる.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-500">
+            <p>Happy Learning! がんばって！</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to toggle the visibility of the answers
+        const answerButtons = document.querySelectorAll('.toggle-answer-btn');
+
+        answerButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const answerDiv = button.nextElementSibling;
+                const isVisible = answerDiv.classList.contains('visible');
+                
+                // Optional: Hide all other answers when one is shown
+                document.querySelectorAll('.answer.visible').forEach(visibleAnswer => {
+                    if (visibleAnswer !== answerDiv) {
+                        visibleAnswer.classList.remove('visible');
+                        const otherButton = visibleAnswer.previousElementSibling;
+                        otherButton.textContent = 'Show Answer';
+                    }
+                });
+
+                // Toggle the current answer
+                answerDiv.classList.toggle('visible');
+                button.textContent = isVisible ? 'Show Answer' : 'Hide Answer';
+            });
+        });
+    </script>
+
+</body>
+</html>
