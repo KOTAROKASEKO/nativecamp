@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英語レッスン 復習プリント</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+        }
+        h1, h2, .button {
+            font-family: 'Mochiy Pop One', sans-serif;
+        }
+        .quiz-card {
+            background-color: #ffffff;
+            border: 2px dashed #f6ad55;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .question-box {
+            background-color: #fffaf0;
+            border-left: 5px solid #f6ad55;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+            background-color: #fefcbf;
+            border-radius: 8px;
+            padding: 0 1rem;
+            margin-top: 1rem;
+        }
+        .answer.show {
+            max-height: 500px; /* 十分な高さを設定 */
+            opacity: 1;
+            padding: 1rem;
+        }
+        .answer-marker {
+            font-weight: bold;
+            color: #dd6b20;
+        }
+        input[type="text"] {
+            border: 2px solid #fed7aae0;
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            transition: all 0.3s ease;
+            width: 100px;
+            margin: 0 0.25rem;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #f6ad55;
+            box-shadow: 0 0 0 3px rgba(246, 173, 85, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-orange-50 min-h-screen p-4 sm:p-8">
+
+    <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl sm:text-5xl text-orange-500 mb-4">復習プリント</h1>
+        <p class="text-gray-600">レッスンで習ったことを思い出してみよう！</p>
+    </div>
+
+    <main>
+        <!-- 問題1: is と are の使い分け -->
+        <div class="quiz-card">
+            <h2 class="text-2xl text-orange-600 mb-4">問1：is と are、どっちかな？</h2>
+            <div class="question-box">
+                <p class="text-lg mb-2">カッコに "is" または "are" を入れて文章を完成させよう！</p>
+                <div class="space-y-3 text-gray-700">
+                    <p>1. The car (<input type="text" id="q1_1" class="w-16 text-center">) cheap.</p>
+                    <p>2. The cars (<input type="text" id="q1_2" class="w-16 text-center">) cheap.</p>
+                    <p>3. We (<input type="text" id="q1_3" class="w-16 text-center">) happy.</p>
+                    <p>4. It (<input type="text" id="q1_4" class="w-16 text-center">) a sunny day.</p>
+                </div>
+                <div id="ans1" class="answer">
+                    <p><span class="answer-marker">1. is</span> (the car は一つだから is)</p>
+                    <p><span class="answer-marker">2. are</span> (the cars は複数形だから are)</p>
+                    <p><span class="answer-marker">3. are</span> (We は複数だから are)</p>
+                    <p><span class="answer-marker">4. is</span> (It は一つだから is)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 問題2: 過去形 was と were -->
+        <div class="quiz-card">
+            <h2 class="text-2xl text-orange-600 mb-4">問2：過去形にしてみよう！</h2>
+            <div class="question-box">
+                <p class="text-lg mb-2">カッコに "was" または "were" を入れて過去の文にしよう！</p>
+                <div class="space-y-3 text-gray-700">
+                    <p>1. The dog (<input type="text" id="q2_1" class="w-16 text-center">) small. (その犬は小さかっ<strong>た</strong>)</p>
+                    <p>2. They (<input type="text" id="q2_2" class="w-16 text-center">) students. (彼らは学生でし<strong>た</strong>)</p>
+                </div>
+                <div id="ans2" class="answer">
+                    <p><span class="answer-marker">1. was</span> (The dog は一つだから was)</p>
+                    <p><span class="answer-marker">2. were</span> (They は複数だから were)</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 問題3: 単語の意味 -->
+        <div class="quiz-card">
+            <h2 class="text-2xl text-orange-600 mb-4">問3：単語の意味、覚えてる？</h2>
+            <div class="question-box">
+                <p class="text-lg mb-2">次の英単語の日本語の意味を書いてみよう！</p>
+                <div class="space-y-3 text-gray-700">
+                    <p>1. these <input type="text" id="q3_1" class="w-24 text-center"></p>
+                    <p>2. early <input type="text" id="q3_2" class="w-24 text-center"></p>
+                    <p>3. classic <input type="text" id="q3_3" class="w-24 text-center"></p>
+                    <p>4. turn on <input type="text" id="q3_4" class="w-24 text-center"></p>
+                </div>
+                <div id="ans3" class="answer">
+                    <p><span class="answer-marker">1. これらの</span></p>
+                    <p><span class="answer-marker">2. 早い</span></p>
+                    <p><span class="answer-marker">3. 古い、昔ながらの</span></p>
+                    <p><span class="answer-marker">4. （スイッチなどを）つける</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 問題4: I'm afraid の使い方 -->
+        <div class="quiz-card">
+            <h2 class="text-2xl text-orange-600 mb-4">問4："I'm afraid" ってどんな意味？</h2>
+            <div class="question-box">
+                <p class="text-lg mb-2">"I'm afraid" の意味として、もっとも近いものを選ぼう！</p>
+                <div class="space-y-2 text-gray-700" id="q4_options">
+                    <label class="flex items-center p-2 rounded-lg hover:bg-yellow-100 cursor-pointer">
+                        <input type="radio" name="afraid" value="a" class="mr-2">
+                        <span>A) 「〜を怖がっている」という、こわい気持ち</span>
+                    </label>
+                    <label class="flex items-center p-2 rounded-lg hover:bg-yellow-100 cursor-pointer">
+                        <input type="radio" name="afraid" value="b" class="mr-2">
+                        <span>B) 「残念だけど〜」「申し訳ないけど〜」という、言いづらいことを伝える前の丁寧な言葉</span>
+                    </label>
+                    <label class="flex items-center p-2 rounded-lg hover:bg-yellow-100 cursor-pointer">
+                        <input type="radio" name="afraid" value="c" class="mr-2">
+                        <span>C) AとB、両方の意味で使われる</span>
+                    </label>
+                </div>
+                <div id="ans4" class="answer">
+                    <p><span class="answer-marker">答え：C</span></p>
+                    <p>すごい！その通り！ "I'm afraid of dogs." (犬がこわい) のように「怖がる」という意味と、 "I'm afraid I can't." (残念だけどできません) のように、相手を気遣う丁寧な断り方の両方で使われる便利な言葉だね！</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 答え合わせボタン -->
+    <div class="text-center mt-8 mb-12">
+        <button id="checkButton" class="button bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+            答え合わせ
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('checkButton').addEventListener('click', function() {
+            // すべてのanswerクラスを持つ要素を取得
+            const answers = document.querySelectorAll('.answer');
+            
+            // 各要素に 'show' クラスをトグルする
+            answers.forEach(answer => {
+                answer.classList.toggle('show');
+            });
+
+            // ボタンのテキストを変更
+            if (this.textContent === '答え合わせ') {
+                this.textContent = '答えをかくす';
+            } else {
+                this.textContent = '答え合わせ';
+            }
+        });
+    </script>
+
+</body>
+</html>
