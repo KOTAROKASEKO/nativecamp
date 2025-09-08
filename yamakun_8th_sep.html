@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>やまくん（8さい）の英語チャレンジ！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4e6f1' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .font-mochi {
+            font-family: 'Mochiy Pop One', sans-serif;
+        }
+        
+        /* Custom styles for the quiz card */
+        .quiz-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 5px solid #005A9C; /* Deep blue border */
+        }
+        
+        /* Basketball-themed title */
+        .title-header {
+            background: linear-gradient(135deg, #FF6B00, #F78E3D); /* Orange gradient */
+            color: white;
+            border-radius: 15px 15px 0 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            border-bottom: 5px solid #005A9C;
+        }
+
+        /* Question item styling */
+        .question-item {
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .question-item.correct {
+            background-color: #e6fffa;
+            border-color: #38a169;
+        }
+        
+        .question-item.incorrect {
+            background-color: #fff5f5;
+            border-color: #e53e3e;
+        }
+
+        /* Input field styling */
+        .answer-input {
+            border-width: 2px;
+            transition: border-color 0.3s ease;
+        }
+        .answer-input:focus {
+            outline: none;
+            border-color: #FF6B00; /* Orange focus */
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.3);
+        }
+
+        /* Button styling */
+        .submit-btn {
+            background-color: #FF6B00;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Score display styling */
+        #score-container {
+            background-color: #005A9C;
+            color: white;
+            border-radius: 12px;
+            transition: opacity 0.5s ease;
+        }
+        
+        .star {
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .answer-display {
+            background-color: #f0f4f8;
+            color: #005A9C;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-3xl mx-auto quiz-card">
+        <!-- Header -->
+        <header class="title-header p-6 text-center">
+            <h1 class="font-mochi text-3xl sm:text-4xl">やまくんの英語チャレンジ！</h1>
+            <p class="mt-2 text-lg">さあ、クイズに挑戦して英語マスターになろう！</p>
+        </header>
+
+        <!-- Quiz Form -->
+        <main class="p-6 sm:p-8">
+            <form id="quiz-form">
+                <div id="questions-container" class="space-y-6">
+                    <!-- Questions will be inserted here by JavaScript -->
+                </div>
+
+                <div class="mt-10 text-center">
+                    <button type="button" id="check-answers-btn" class="submit-btn font-mochi text-xl py-3 px-10 rounded-full">
+                        答え合わせ！
+                    </button>
+                </div>
+            </form>
+
+            <!-- Score Display -->
+            <div id="score-container" class="mt-8 p-6 text-center text-2xl font-bold opacity-0 hidden">
+                <!-- Score will be inserted here -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "なんさいですか？", answer: "how old are you?" },
+            { question: "私は６さいです", answer: "I'm 6 years old" },
+            { question: "私は13さいです", answer: "I'm thirteen" },
+            { question: "11", answer: "eleven" },
+            { question: "12", answer: "twelve" },
+            { question: "13", answer: "thirteen" },
+            { question: "せん", answer: "line" },
+            { question: "まる", answer: "circle" },
+            { question: "せんをかく", answer: "draw a line" },
+            { question: "まるをかく", answer: "draw a circle" }
+        ];
+
+        const questionsContainer = document.getElementById('questions-container');
+        const checkAnswersBtn = document.getElementById('check-answers-btn');
+        const scoreContainer = document.getElementById('score-container');
+
+        // Generate question HTML
+        function setupQuiz() {
+            quizData.forEach((item, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.id = `question-${index}`;
+                questionElement.className = 'question-item p-5 rounded-xl';
+                questionElement.innerHTML = `
+                    <label for="q${index}" class="block text-lg font-bold text-gray-800 mb-3">
+                        第${index + 1}問: 「${item.question}」
+                    </label>
+                    <input type="text" id="q${index}" name="q${index}" class="answer-input w-full p-3 border-gray-300 rounded-lg focus:ring-0 text-lg" placeholder="英語で書いてみよう！">
+                    <div id="answer-q${index}" class="answer-display mt-3 p-2 rounded-lg font-bold text-base hidden"></div>
+                `;
+                questionsContainer.appendChild(questionElement);
+            });
+        }
+        
+        // Check answers
+        function checkAnswers() {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const userInput = document.getElementById(`q${index}`);
+                const userAnswer = userInput.value.trim().toLowerCase();
+                const correctAnswer = item.answer.toLowerCase();
+                const questionItem = document.getElementById(`question-${index}`);
+                const answerDisplay = document.getElementById(`answer-q${index}`);
+
+                answerDisplay.innerHTML = `こたえ: ${item.answer}`;
+                answerDisplay.classList.remove('hidden');
+                
+                // Disable the input after checking
+                userInput.disabled = true;
+
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    questionItem.classList.add('correct');
+                } else {
+                    questionItem.classList.add('incorrect');
+                }
+            });
+
+            // Display score
+            let scoreMessage = `<span class="star">⭐</span> ${quizData.length}問中 ${score}問 正解！ <span class="star">⭐</span>`;
+            if (score === quizData.length) {
+                scoreMessage = `<span class="star">🎉</span> 全問正解！おめでとう！ <span class="star">🎉</span>`;
+            } else if (score >= quizData.length / 2) {
+                scoreMessage = `すごい！${scoreMessage} そのちょうし！`;
+            } else {
+                scoreMessage = `がんばったね！${scoreMessage} また挑戦しよう！`;
+            }
+            scoreContainer.innerHTML = scoreMessage;
+            scoreContainer.classList.remove('hidden');
+            setTimeout(() => {
+                scoreContainer.style.opacity = '1';
+            }, 100);
+
+            // Change button
+            checkAnswersBtn.textContent = 'もういちど挑戦！';
+            checkAnswersBtn.onclick = () => location.reload();
+        }
+
+        // Event listener for the button
+        checkAnswersBtn.addEventListener('click', checkAnswers);
+
+        // Initialize the quiz on page load
+        window.onload = setupQuiz;
+    </script>
+</body>
+</html>
