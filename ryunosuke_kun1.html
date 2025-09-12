@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>りゅうのすけくんの英語チャレンジ！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff;
+        }
+        .font-mochi {
+            font-family: 'Mochiy Pop One', sans-serif;
+        }
+        .quiz-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+            border-left: 8px solid;
+        }
+        .quiz-card:hover {
+            transform: translateY(-5px);
+        }
+        .answer {
+            transition: all 0.5s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .answer.show {
+            max-height: 200px; /* 十分な高さを設定 */
+            opacity: 1;
+            margin-top: 16px;
+        }
+        .check-button {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- ヘッダー -->
+        <header class="text-center mb-8 p-6 bg-white rounded-2xl shadow-lg">
+            <h1 class="font-mochi text-3xl md:text-5xl text-blue-600">えいごチャレンジ！</h1>
+            <div class="mt-4 text-lg text-gray-600 bg-gray-100 inline-block px-6 py-2 rounded-full">
+                <p><span class="font-bold">生徒名:</span> りゅうのすけくん</p>
+                <p><span class="font-bold">年齢:</span> １２歳</p>
+            </div>
+        </header>
+
+        <!-- クイズセクション -->
+        <main id="quiz-container" class="space-y-6">
+
+            <!-- 問題 1 -->
+            <div class="quiz-card border-cyan-400">
+                <p class="text-xl font-bold text-gray-800">Q1. 日本語を参考に、英文を完成させよう！</p>
+                <p class="mt-2 text-gray-600">「人々は自然を楽しみながら登ります」</p>
+                <p class="mt-4 text-lg">People climb <input type="text" value="while" class="bg-gray-200 rounded p-1 w-20 text-center pointer-events-none"> enjoying nature.</p>
+                <div class="answer">
+                    <p class="font-bold text-cyan-600 text-lg">答え: while = 〜ながら</p>
+                    <p class="text-gray-700">"while" は2つのことを同時にするときに使う便利な言葉だよ！</p>
+                </div>
+            </div>
+
+            <!-- 問題 2 -->
+            <div class="quiz-card border-amber-400">
+                <p class="text-xl font-bold text-gray-800">Q2. 下の文を英語にしてみよう！</p>
+                <p class="mt-2 text-gray-600">「スマホを見ながら昼ご飯を食べないでください」</p>
+                <p class="mt-4 text-lg">
+                    Don't
+                    <input type="text" placeholder="①" class="bg-gray-100 rounded p-1 w-24 text-center border-2 border-dashed">
+                    while
+                    <input type="text" placeholder="②" class="bg-gray-100 rounded p-1 w-32 text-center border-2 border-dashed">.
+                </p>
+                <div class="answer">
+                    <p class="font-bold text-amber-600 text-lg">答え: Don't <span class="font-mono text-amber-700">use [your] phone</span> while <span class="font-mono text-amber-700">eating lunch</span></p>
+                    <p class="text-gray-700">「〜しないで」は "Don't" から始めよう！</p>
+                </div>
+            </div>
+
+            <!-- 問題 3 -->
+            <div class="quiz-card border-rose-400">
+                <p class="text-xl font-bold text-gray-800">Q3. これも英語にチャレンジ！</p>
+                <p class="mt-2 text-gray-600">「走りながらスマホをいじらないでください」</p>
+                 <p class="mt-4 text-lg">
+                    Don't
+                    <input type="text" placeholder="①" class="bg-gray-100 rounded p-1 w-24 text-center border-2 border-dashed">
+                    while
+                    <input type="text" placeholder="②" class="bg-gray-100 rounded p-1 w-24 text-center border-2 border-dashed">.
+                </p>
+                <div class="answer">
+                    <p class="font-bold text-rose-600 text-lg">答え: Don't <span class="font-mono text-rose-700">use [your] phone</span> while <span class="font-mono text-rose-700">running</span></p>
+                     <p class="text-gray-700">歩くのは"walking"、走るのは"running"だね。</p>
+                </div>
+            </div>
+            
+            <!-- 問題 4 -->
+            <div class="quiz-card border-lime-500">
+                <p class="text-xl font-bold text-gray-800">Q4. 「受け身」の文を作ってみよう！</p>
+                <p class="mt-2 text-gray-600">「この映画は多くの人に見られています」</p>
+                 <p class="mt-4 text-lg">
+                    This movie is
+                    <input type="text" placeholder="①" class="bg-gray-100 rounded p-1 w-24 text-center border-2 border-dashed">
+                    by
+                    <input type="text" placeholder="②" class="bg-gray-100 rounded p-1 w-32 text-center border-2 border-dashed">.
+                </p>
+                <div class="answer">
+                    <p class="font-bold text-lime-600 text-lg">答え: This movie is <span class="font-mono text-lime-700">watched</span> by <span class="font-mono text-lime-700">many people</span>.</p>
+                     <p class="text-gray-700">「〜される」という受け身の文は <span class="font-bold">be動詞 + 過去分詞</span> の形が基本だよ！</p>
+                </div>
+            </div>
+            
+            <!-- 問題 5 -->
+            <div class="quiz-card border-violet-500">
+                <p class="text-xl font-bold text-gray-800">Q5. 単語クイズ！</p>
+                <p class="mt-2 text-gray-600">下の単語は複数形かな？単数形かな？意味も答えよう！</p>
+                <p class="mt-4 text-4xl text-center font-bold font-mochi text-violet-600 tracking-wider">ages</p>
+                <div class="answer">
+                    <p class="font-bold text-violet-600 text-lg">答え: 複数形</p>
+                     <p class="text-gray-700">単数形は <span class="font-bold">age</span> で「年齢」。<span class="font-bold">ages</span> は「年齢（複数）」や「時代」といった意味で使われるよ。</p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- 答え合わせボタン -->
+        <footer class="text-center mt-10">
+            <button id="check-answers-btn" class="check-button font-mochi text-2xl bg-blue-500 text-white py-4 px-10 rounded-full shadow-lg hover:bg-blue-600 hover:shadow-xl transform hover:-translate-y-1">
+                答え合わせ
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        const checkButton = document.getElementById('check-answers-btn');
+        const answers = document.querySelectorAll('.answer');
+
+        let answersVisible = false;
+
+        checkButton.addEventListener('click', () => {
+            answersVisible = !answersVisible; // 状態を切り替える
+
+            if (answersVisible) {
+                answers.forEach(answer => {
+                    answer.classList.add('show');
+                });
+                checkButton.textContent = 'もう一度かくす';
+                checkButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                checkButton.classList.add('bg-orange-500', 'hover:bg-orange-600');
+            } else {
+                answers.forEach(answer => {
+                    answer.classList.remove('show');
+                });
+                checkButton.textContent = '答え合わせ';
+                checkButton.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+                checkButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            }
+        });
+    </script>
+</body>
+</html>

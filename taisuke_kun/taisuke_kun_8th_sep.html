@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来型学習モジュール：Mission Eigo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header class="main-header">
+            <h1>Mission: Eigo Master</h1>
+            <p class="subtitle">- 指令：以下の文章を分析し、英訳スキルをアップデートせよ -</p>
+        </header>
+
+        <main class="quiz-zone">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Case File #01: 薬局のアプリ</h2>
+                        <div class="chip-label">Scenario Analysis</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="japanese-text">
+                            <strong>原文:</strong><br>
+                            太郎のお母さんは薬局のアプリを持っていました。店員にQRをスキャンして、１時間後、彼の家で、お母さんはお金がポイントになることを太郎に説明しました。数日後太郎は、ポイントがもらえると思って、アプリで買い物をしました。
+                        </p>
+                    </div>
+                </div>
+
+                
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Case File #04: ポイントの説明</h2>
+                        <div class="chip-label">Expression Check</div>
+                    </div>
+                    <div class="card-body">
+                         <p><strong>[ Question 3 ]</strong></p>
+                        <p class="japanese-text">
+                           「お母さんはお金がポイントになることを太郎に説明しました。」の翻訳比較
+                        </p>
+                        <div class="translation-comparison">
+                            <div class="attempt">
+                                <h4>たいすけくんの回答:</h4>
+                                <p>"Taro's mom explained that money become point."</p>
+                            </div>
+                            <div class="correction">
+                                <h4>模範回答:</h4>
+                                <p>"We can get points from the purchase."</p>
+                            </div>
+                        </div>
+                        <p>模範回答のように「購入によってポイントがもらえる」と表現する方が自然です。たいすけくんの回答をより良くするために、動詞 "become" の代わりに使える、より適切な表現を考えてみよう。</p>
+                        <textarea class="user-answer" id="q3-answer" placeholder="ここに回答を入力..."></textarea>
+                    </div>
+                </div>
+
+                 <div class="card">
+                    <div class="card-header">
+                        <h2>Case File #05: 最後の挑戦</h2>
+                        <div class="chip-label">Final Translation</div>
+                    </div>
+                    <div class="card-body">
+                         <p><strong>[ Question 4 ]</strong></p>
+                        <p class="japanese-text">
+                           「数日後太郎は、ポイントがもらえると思って、アプリで買い物をしました」の翻訳比較
+                        </p>
+                        <div class="translation-comparison">
+                            <div class="attempt">
+                                <h4>たいすけくんの回答:</h4>
+                                <p>"Few days later, Taro thought that Taro can get point, so he shopping by application."</p>
+                            </div>
+                            <div class="correction">
+                                <h4>模範回答:</h4>
+                                <p>"A few days later, Taro thought that he could get points, so he used the app when he was paying to gain points."</p>
+                            </div>
+                        </div>
+                        <p>模範回答はより具体的で自然な表現を使っています。特に「アプリで買い物しました」の部分は、どのような状況を想像して翻訳されているか、考えて説明しなさい。</p>
+                         <textarea class="user-answer" id="q4-answer" placeholder="ここに回答を入力..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button id="check-answers-btn" class="glow-on-hover">答え合わせ</button>
+
+            <div id="answers-section" class="answers-section" style="display: none;">
+                <h2>Mission Report / 解答と解説</h2>
+
+                 <div class="answer-card">
+                    <h4>Case File #04: ポイントの説明</h4>
+                    <p><strong>解説:</strong><br>
+                    「お金がポイントになる」を直訳すると不自然になりがちです。"Money become points" よりも、「（買い物などをすることで）ポイントを稼ぐ、得る」という発想で、"earn points" や "get points" という動詞を使うのが一般的です。例えば、"You can earn points with every purchase." のように表現できます。</p>
+                </div>
+                <div class="answer-card">
+                    <h4>Case File #05: 最後の挑戦</h4>
+                    <p><strong>解説:</strong><br>
+                    「アプリで買い物」は、具体的に「支払いの時にアプリを使った」と解釈すると、より英語らしい表現になります。模範回答の "he used the app when he was paying" は、まさにその状況を表しています。単に "shopping by application" と言うよりも、行動が具体的で分かりやすくなります。</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
