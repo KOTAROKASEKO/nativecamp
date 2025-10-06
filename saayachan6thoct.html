@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>さあやちゃんのための楽しい英語クイズ！</title>
+    <style>
+        /* Google Fontsから丸ゴシック体のフォントを読み込み */
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+
+        /* 基本スタイル */
+        :root {
+            --primary-color: #ff69b4; /* ホットピンク */
+            --secondary-color: #1e90ff; /* ドジャーブルー */
+            --background-start: #ff9a9e; /* 淡いピンク */
+            --background-end: #fecfef;   /* 淡いラベンダー */
+            --card-background: rgba(255, 255, 255, 0.95);
+            --text-color: #333;
+            --correct-color: #28a745; /* 緑 */
+            --wrong-color: #dc3545;   /* 赤 */
+            --font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* 全体のコンテナ */
+        .container {
+            background-color: var(--card-background);
+            padding: 30px 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            border: 5px solid #fff;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ヘッダー */
+        header h1 {
+            color: var(--primary-color);
+            font-size: clamp(2rem, 5vw, 2.8rem); /* レスポンシブフォントサイズ */
+            font-weight: 800;
+            margin: 0 0 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #555;
+            margin: 0 0 30px;
+        }
+
+        /* 問題カードのグリッド */
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* 問題カード */
+        .card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 12px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-header .icon {
+            font-size: 1.8rem;
+        }
+        
+        .card h2 {
+            font-size: 1.6rem;
+            color: var(--secondary-color);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* 入力フィールド */
+        .card input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-family: var(--font-family);
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .card input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+        }
+
+        /* 答え表示エリア */
+        .answer {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: none; /* 最初は非表示 */
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .answer.correct {
+            background-color: #e0f8e6;
+            color: var(--correct-color);
+            border: 2px solid var(--correct-color);
+        }
+
+        .answer.wrong {
+            background-color: #fde2e4;
+            color: var(--wrong-color);
+            border: 2px solid var(--wrong-color);
+        }
+
+        /* ボタン */
+        .check-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .check-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>✨ さあやちゃんのわくわく英語クイズ ✨</h1>
+            <p>日本語に合う英語を下の箱に書いてみてね！</p>
+        </header>
+
+        <div class="question-grid" id="quiz-grid">
+            <!-- JavaScriptで問題カードがここに追加されます -->
+        </div>
+
+        <button class="check-button" id="check-answers-btn">答え合わせ！</button>
+    </div>
+
+    <script>
+        // 問題のデータ
+        const quizData = [
+            { id: 1, icon: '🎁', japanese: 'どうぞ', english: 'here you are' },
+            { id: 2, icon: '😊', japanese: 'ありがとう', english: 'thank you' },
+            { id: 3, icon: '💖', japanese: 'どうもありがとう', english: 'thank you very much' },
+            { id: 4, icon: '☀️', japanese: 'とっても あつい', english: 'very hot' },
+            { id: 5, icon: '❄️', japanese: 'とっても さむい', english: 'very cold' },
+            { id: 6, icon: '🦒', japanese: '（背が）高い', english: 'tall' },
+            { id: 7, icon: '🐜', japanese: '（背が）低い', english: 'short' },
+            { id: 8, icon: '👮', japanese: 'おまわりさん', english: 'cop' },
+            { id: 9, icon: '☁️', japanese: 'くも', english: 'cloud' },
+            { id: 10, icon: '🐱', japanese: 'ねこ', english: 'cat' },
+            { id: 11, icon: '☕', japanese: 'こっぷ', english: 'cup' },
+            { id: 12, icon: '🤔', japanese: 'とても背が高い', english: 'very tall' }
+        ];
+
+        const quizGrid = document.getElementById('quiz-grid');
+
+        // 問題カードをページに作成する
+        function createQuizCards() {
+            quizData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="icon">${item.icon}</span>
+                        <h2>${item.japanese}</h2>
+                    </div>
+                    <input type="text" id="q${item.id}" placeholder="こたえを英語で入力">
+                    <div class="answer" id="a${item.id}"></div>
+                `;
+                quizGrid.appendChild(card);
+            });
+        }
+
+        // 答え合わせボタンの処理
+        const checkButton = document.getElementById('check-answers-btn');
+        checkButton.addEventListener('click', () => {
+            quizData.forEach(item => {
+                const userInput = document.getElementById(`q${item.id}`).value;
+                const answerDiv = document.getElementById(`a${item.id}`);
+                
+                // .trim()で前後のスペースを消し、.toLowerCase()で全部小文字にして比べる
+                const isCorrect = userInput.trim().toLowerCase() === item.english.toLowerCase();
+
+                if (isCorrect) {
+                    answerDiv.innerHTML = '🎉 正解！すごい！';
+                    answerDiv.className = 'answer correct';
+                } else {
+                    answerDiv.innerHTML = `😢 ざんねん！正解は <br><strong>${item.english}</strong>`;
+                    answerDiv.className = 'answer wrong';
+                }
+                
+                answerDiv.style.display = 'block'; // 答えを表示
+            });
+        });
+
+        // ページが読み込まれたらクイズカードを作成
+        window.onload = createQuizCards;
+    </script>
+
+</body>
+</html>
