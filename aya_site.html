@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Book Review Site</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Use Inter as the base font */
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6; /* Tailwind's bg-gray-100 */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <div class="container mx-auto px-4 py-12">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">My Book Reviews</h1>
+            <p class="text-lg text-gray-600 mt-2">Recent books I've read and recommend</p>
+        </header>
+
+        <!-- Review Card Grid -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+
+            <!-- Card 1: Addie LaRue -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                <!-- Image Placeholder -->
+                <img src="https://placehold.co/600x400/6366f1/white?text=Addie+LaRue" 
+                     alt="Image for The Invisible Life of Addie LaRue" 
+                     class="w-full h-56 object-cover">
+                
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">The Invisible Life of Addie LaRue</h2>
+                    <h3 class="text-md font-medium text-indigo-600 mb-4">V. E. Schwab</h3>
+                    
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        A woman cursed to be forgotten by everyone she meets for 300 years. What is the "something" she finds across time?
+                    </p>
+
+                    <!-- Review (Toggle) -->
+                    <div id="review-1" class="mt-4 text-gray-700 text-sm leading-relaxed hidden space-y-3">
+                        <p>I was struck by the loneliness of being forgotten and the strength of will to exist anyway.</p>
+                        <p>The bargains with the devil and the way she finally found to leave her "mark" were particularly impressive. It was an epic story about time-transcending love, art, and memory.</p>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="mt-6 text-right">
+                        <button onclick="toggleReview('review-1', this)" 
+                                class="bg-indigo-600 text-white font-medium py-2 px-5 rounded-lg transition-colors duration-300 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                            Read Review
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Project Hail Mary -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                <!-- Image Placeholder -->
+                <img src="https://placehold.co/600x400/10b981/white?text=Project+Hail+Mary" 
+                     alt="Image for Project Hail Mary" 
+                     class="w-full h-56 object-cover">
+                
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Project Hail Mary</h2>
+                    <h3 class="text-md font-medium text-emerald-600 mb-4">Andy Weir</h3>
+                    
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        A scientist wakes up on a spaceship with amnesia. With only a clue that he must save Earth, he cooperates with an unknown lifeform.
+                    </p>
+
+                    <!-- Review (Toggle) -->
+                    <div id="review-2" class="mt-4 text-gray-700 text-sm leading-relaxed hidden space-y-3">
+                        <p>It's truly a "sci-fi movie you can read." The meticulous scientific detail and the thrilling plot kept me turning the pages.</p>
+                        <p>I was especially moved by the friendship between the protagonist and "him," a bond that transcended species. It's the best sci-fi entertainment I've read in years, full of humor and a love for science. Amazing, amazing, amazing!</p>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="mt-6 text-right">
+                        <button onclick="toggleReview('review-2', this)" 
+                                class="bg-emerald-600 text-white font-medium py-2 px-5 rounded-lg transition-colors duration-300 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">
+                            Read Review
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Before the Coffee Gets Cold -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                <!-- Image Placeholder -->
+                <img src="https://placehold.co/600x400/d97706/white?text=Before+the+Coffee" 
+                     alt="Image for Before the Coffee Gets Cold" 
+                     class="w-full h-56 object-cover">
+                
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Before the Coffee Gets Cold</h2>
+                    <h3 class="text-md font-medium text-amber-700 mb-4">Toshikazu Kawaguchi</h3>
+                    
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Only a specific seat in a certain café can send customers back to the past. However, there are very strict rules...
+                    </p>
+
+                    <!-- Review (Toggle) -->
+                    <div id="review-3" class="mt-4 text-gray-700 text-sm leading-relaxed hidden space-y-3">
+                        <p>"Even if you go back to the past, the present won't change." But in the reasons people wanted to go back, I saw different forms of love.</p>
+                        <p>A collection of four short stories that gently seep into your heart. It left me feeling very warm and as if my heart had been cleansed. It's a book that makes you want to read while drinking a warm cup of coffee.</p>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="mt-6 text-right">
+                        <button onclick="toggleReview('review-3', this)" 
+                                class="bg-amber-600 text-white font-medium py-2 px-5 rounded-lg transition-colors duration-300 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50">
+                            Read Review
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        /**
+         * Toggles the visibility of a review element.
+         * @param {string} reviewId - The ID of the review element to toggle.
+         * @param {HTMLElement} button - The button element that was clicked.
+         */
+        function toggleReview(reviewId, button) {
+            try {
+                const reviewElement = document.getElementById(reviewId);
+                
+                if (!reviewElement) {
+                    console.error('Element not found:', reviewId);
+                    return;
+                }
+
+                // Toggle the 'hidden' class
+                reviewElement.classList.toggle('hidden');
+
+                // Change the button text
+                if (reviewElement.classList.contains('hidden')) {
+                    button.textContent = 'Read Review';
+                } else {
+                    button.textContent = 'Close';
+                }
+            } catch (e) {
+                console.error('Error in toggleReview:', e);
+            }
+        }
+    </script>
+
+</body>
+</html>
