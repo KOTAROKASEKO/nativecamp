@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>業務マニュアル・タイムスケジュール</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e5e7eb;
+            z-index: 0;
+        }
+        .time-dot {
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
+
+    <!-- Header -->
+    <header class="bg-slate-800 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-2xl mx-auto flex justify-between items-center">
+            <h1 class="text-lg font-bold"><i class="fa-solid fa-clipboard-list mr-2"></i>業務マニュアル</h1>
+            <span class="text-sm bg-slate-600 px-2 py-1 rounded">20:00 - 07:00</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-2xl mx-auto p-4 relative">
+        
+        <!-- Timeline Vertical Line -->
+        <div class="timeline-line hidden sm:block"></div>
+
+        <!-- 20:00 Section -->
+        <div class="mb-8 relative sm:pl-16">
+            <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full text-white font-bold time-dot shadow-lg">
+                20
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-8 border-blue-600 overflow-hidden">
+                <div class="bg-blue-50 p-3 border-b border-blue-100 flex justify-between items-center sm:hidden">
+                    <span class="font-bold text-xl text-blue-800">20:00 出勤時</span>
+                </div>
+                <div class="p-4 space-y-4">
+                    <!-- Task Block -->
+                    <div>
+                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">貸切玄関ポーチ・看板</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
+                            <li>自動ドアOFF、扉カギ閉め</li>
+                            <li>看板を室内へ移動</li>
+                        </ul>
+                    </div>
+                    <!-- Task Block -->
+                    <div>
+                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">タオル類洗濯</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
+                            <li>キッチン、玄関、足湯のタオル回収</li>
+                            <li>倉庫の白い袋に入っているタオルを洗濯</li>
+                            <li>キッチンダスターも洗濯</li>
+                            <li>洗濯終わり次第干す</li>
+                        </ul>
+                    </div>
+                    <!-- Task Block -->
+                    <div>
+                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">温度チェック・清掃</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
+                            <li>冷蔵庫・冷凍庫の温度チェック</li>
+                            <li>貸切風呂清掃 <span class="text-xs bg-red-100 text-red-600 px-1 rounded ml-1">予約詰まり優先</span></li>
+                            <li>倉庫/キッチン/バー/売店 清掃チェックリスト参照</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 22:00 Section -->
+        <div class="mb-8 relative sm:pl-16">
+            <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-full text-white font-bold time-dot shadow-lg">
+                22
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-8 border-indigo-600 overflow-hidden">
+                <div class="bg-indigo-50 p-3 border-b border-indigo-100 sm:hidden">
+                    <span class="font-bold text-xl text-indigo-800">22:00〜</span>
+                </div>
+                <div class="p-4 space-y-4">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-gray-50 p-3 rounded">
+                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-store text-indigo-500 mr-1"></i>売店の施錠</h4>
+                            <p class="text-xs text-gray-600">施錠し、close札をかける</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded">
+                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-key text-indigo-500 mr-1"></i>マスターキー引継ぎ</h4>
+                            <p class="text-xs text-gray-600">フロント右側の釣銭準備金を金庫に入れ施錠</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded">
+                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-mobile-screen text-indigo-500 mr-1"></i>スマホ動作確認</h4>
+                            <p class="text-xs text-gray-600">呼出音が鳴るか確認 → 支配人へLINE</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded">
+                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-trash text-indigo-500 mr-1"></i>ゴミ回収/捨てる</h4>
+                            <p class="text-xs text-gray-600">事務所(シュレッダー)/倉庫/バー/フロント/キッチン(段ボール)</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">朝食セッティング・清掃</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
+                            <li>皿、メニュー立て、トレー、トースター、ウォーマーなど</li>
+                            <li>通用口施錠・水拭き清掃（スタッフ出入り口）</li>
+                            <li>パブリックトイレ・喫煙室清掃（鏡・便座拭き・ゴミ回収・ペーパー三角折り・灰皿の水入れ替え）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 23:00 / 24:00 Section -->
+        <div class="mb-8 relative sm:pl-16">
+             <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-purple-600 rounded-full text-white font-bold time-dot shadow-lg">
+                23
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-8 border-purple-600 overflow-hidden">
+                <div class="bg-purple-50 p-3 border-b border-purple-100 sm:hidden">
+                    <span class="font-bold text-xl text-purple-800">23:00 / 24:00</span>
+                </div>
+                <div class="p-4">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-purple-100 text-purple-800 font-bold px-2 py-1 rounded text-xs mr-3 mt-1">23:00</div>
+                        <div>
+                            <h4 class="font-bold text-sm">湯抜き（該当日の場合）</h4>
+                            <p class="text-xs text-gray-600">貸切風呂の湯抜き→表にチェック</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-purple-100 text-purple-800 font-bold px-2 py-1 rounded text-xs mr-3 mt-1">24:00</div>
+                        <div>
+                            <h4 class="font-bold text-sm">足湯 close</h4>
+                            <p class="text-xs text-gray-600">鍵を閉め、close札をかける。中庭スポットOFF。該当日は湯抜き。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1:00 Section -->
+        <div class="mb-8 relative sm:pl-16">
+            <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-pink-600 rounded-full text-white font-bold time-dot shadow-lg">
+                01
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-8 border-pink-600 overflow-hidden">
+                <div class="bg-pink-50 p-3 border-b border-pink-100 sm:hidden">
+                    <span class="font-bold text-xl text-pink-800">01:00〜</span>
+                </div>
+                <div class="p-4">
+                     <h3 class="font-bold text-gray-700 mb-2 border-b pb-1"><i class="fa-solid fa-bath mr-2 text-pink-500"></i>大浴場清掃</h3>
+                     <div class="space-y-3">
+                        <div class="text-sm">
+                            <span class="font-semibold block text-gray-600">【風呂場】</span>
+                            <p class="text-gray-500 pl-2">排水溝の髪の毛・ゴミ回収 / イス・桶整理 / ソープ類補充 / 温度チェック・調整</p>
+                        </div>
+                        <div class="text-sm">
+                            <span class="font-semibold block text-gray-600">【脱衣所】</span>
+                            <p class="text-gray-500 pl-2">鏡台・脱衣所整理 / アメニティ・化粧水補充 / コロコロ / トイレ清掃 / ロッカー確認</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2:00 Section -->
+        <div class="mb-8 relative sm:pl-16">
+             <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-orange-500 rounded-full text-white font-bold time-dot shadow-lg">
+                02
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-8 border-orange-500 overflow-hidden">
+                <div class="bg-orange-50 p-3 border-b border-orange-100 sm:hidden">
+                    <span class="font-bold text-xl text-orange-800">02:00〜</span>
+                </div>
+                <div class="p-4 space-y-4">
+                    <div class="bg-orange-50 border border-orange-200 rounded p-3">
+                        <h3 class="font-bold text-orange-800 mb-2 text-sm"><i class="fa-solid fa-utensils mr-2"></i>朝食準備 (日・月・水・金)</h3>
+                        <ul class="list-disc list-inside text-xs space-y-1 text-gray-700">
+                            <li><strong>スクランブルエッグ:</strong> 冷凍庫上段のエッグを沸騰したお湯に入れ、消火</li>
+                            <li><strong>豆乳スープ:</strong> 冷蔵庫下段のスープをIHの目盛3で温め</li>
+                        </ul>
+                    </div>
+                    <div>
+                         <h3 class="font-bold text-gray-700 mb-1 text-sm">その他清掃</h3>
+                         <ul class="list-disc list-inside text-xs text-gray-600">
+                            <li>冷蔵庫・冷凍庫の温度チェック</li>
+                            <li>倉庫/キッチン/バー/売店 コロコロ掛け</li>
+                            <li>3F更衣室および螺旋階段清掃</li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 5:00 Section -->
+        <div class="mb-8 relative sm:pl-16">
+             <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-yellow-500 rounded-full text-white font-bold time-dot shadow-lg">
+                05
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-8 border-yellow-500 overflow-hidden">
+                <div class="bg-yellow-50 p-3 border-b border-yellow-100 sm:hidden">
+                    <span class="font-bold text-xl text-yellow-800">05:00〜</span>
+                </div>
+                <div class="p-4 space-y-3">
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <div class="bg-gray-50 p-2 rounded border">
+                            <span class="font-bold block text-gray-700">バーカウンター点灯</span>
+                            <span class="text-xs text-gray-500">①②ON</span>
+                        </div>
+                        <div class="bg-gray-50 p-2 rounded border">
+                            <span class="font-bold block text-gray-700">通用口解錠</span>
+                            <span class="text-xs text-gray-500">スタッフ出入り口</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t pt-2">
+                        <h4 class="font-bold text-sm text-gray-700">正面玄関周辺清掃</h4>
+                        <p class="text-xs text-gray-600">傘の整理 / 傘袋ゴミ回収 / タオル回収・補充 / 床拭き / ゴミ箱回収</p>
+                    </div>
+
+                    <div class="border-t pt-2">
+                        <h4 class="font-bold text-sm text-gray-700">風呂温度チェック・調整</h4>
+                        <p class="text-xs text-gray-600">大浴場 / 貸切風呂</p>
+                    </div>
+
+                    <div class="bg-yellow-50 border border-yellow-200 rounded p-3">
+                         <h3 class="font-bold text-yellow-800 mb-2 text-sm"><i class="fa-solid fa-mug-hot mr-2"></i>朝食準備 (毎日)</h3>
+                         <ul class="list-disc list-inside text-xs space-y-1 text-gray-700">
+                            <li>ウインナー2袋を沸騰したお湯に入れ、3分湯煎→お皿に移しラップ</li>
+                            <li><span class="font-bold text-red-500">※宿泊30名未満の場合 1袋</span></li>
+                            <li>冷蔵庫下段のきのこスープをIHの目盛3で温め (火・木・土)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6:00 / 7:00 Section -->
+         <div class="mb-20 relative sm:pl-16">
+             <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-green-600 rounded-full text-white font-bold time-dot shadow-lg">
+                06
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-8 border-green-600 overflow-hidden">
+                 <div class="bg-green-50 p-3 border-b border-green-100 sm:hidden">
+                    <span class="font-bold text-xl text-green-800">06:00 / 07:00</span>
+                </div>
+                <div class="p-4 space-y-4">
+                     <!-- 6:00 -->
+                    <div>
+                        <div class="bg-green-100 text-green-800 font-bold px-2 py-1 rounded w-max text-xs mb-2">06:00〜</div>
+                        <ul class="list-none text-sm space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-green-500 w-5"></i> 貸切風呂清掃チェック (リスト参照)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-lightbulb text-green-500 w-5"></i> 玄関消灯 (入口左側ボタンOFF)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-temperature-half text-green-500 w-5"></i> 風呂温度チェック (大浴場/足湯/貸切)</li>
+                        </ul>
+                    </div>
+                    
+                    <hr>
+
+                    <!-- 7:00 -->
+                     <div>
+                        <div class="bg-green-100 text-green-800 font-bold px-2 py-1 rounded w-max text-xs mb-2">07:00〜</div>
+                        <ul class="list-none text-sm space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fa-solid fa-door-open text-green-500 w-5"></i> 足湯オープン、売店オープン (退勤前)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-mobile text-green-500 w-5"></i> フロント片付け (スマホ付け、ベル配置)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-key text-green-500 w-5"></i> マスターキー引継ぎ (日勤へ鍵を引継ぎ、夜勤引継ぎ表へ記名)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Sticky Warning -->
+    <div class="fixed bottom-0 left-0 right-0 bg-red-600 text-white p-3 text-center shadow-lg z-50">
+        <p class="font-bold text-lg"><i class="fa-solid fa-triangle-exclamation mr-2"></i>全て時間通りに行う</p>
+    </div>
+
+</body>
+</html>
+
