@@ -13,6 +13,7 @@
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #f3f4f6;
+            overscroll-behavior-y: none; /* スワイプ時のバウンス防止 */
         }
         .timeline-line {
             position: absolute;
@@ -26,15 +27,46 @@
         .time-dot {
             z-index: 10;
         }
+        /* スワイプ用スタイル */
+        .swipe-card {
+            touch-action: pan-y; /* 横スクロールを無効化してJSで制御 */
+            cursor: grab;
+            transition: transform 0.1s linear;
+            position: relative;
+            user-select: none; /* テキスト選択防止 */
+        }
+        .swipe-card:active {
+            cursor: grabbing;
+        }
+        .swipe-card.removing {
+            transition: transform 0.3s ease, opacity 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+            transform: translateX(100%);
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .swipe-instruction {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
     </style>
 </head>
-<body class="text-gray-800 pb-20">
+<body class="text-gray-800 pb-20 select-none">
 
     <!-- Header -->
     <header class="bg-slate-800 text-white p-4 sticky top-0 z-50 shadow-md">
         <div class="max-w-2xl mx-auto flex justify-between items-center">
             <h1 class="text-lg font-bold"><i class="fa-solid fa-clipboard-list mr-2"></i>業務マニュアル</h1>
             <span class="text-sm bg-slate-600 px-2 py-1 rounded">20:00 - 07:00</span>
+        </div>
+        <div class="max-w-2xl mx-auto mt-2 text-center text-xs text-slate-300 swipe-instruction">
+            <i class="fa-solid fa-arrows-left-right mr-1"></i>タスクを横にスワイプして完了
         </div>
     </header>
 
@@ -44,97 +76,56 @@
         <!-- Timeline Vertical Line -->
         <div class="timeline-line hidden sm:block"></div>
 
-        <!-- SPECIAL NOTICE SECTION (New Request) -->
-        <div class="mb-10 relative sm:pl-16">
-            <!-- Mobile Warning Header -->
-            <div class="sm:hidden bg-red-600 text-white p-2 rounded-t-lg font-bold text-center">
-                <i class="fa-solid fa-triangle-exclamation mr-2"></i>貸切風呂清掃の注意点
-            </div>
-            
-            <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-red-600 rounded-full text-white font-bold time-dot shadow-lg">
-                <i class="fa-solid fa-exclamation"></i>
-            </div>
-            
-            <div class="bg-white rounded-b-lg sm:rounded-lg shadow-md border-2 border-red-600 overflow-hidden">
-                <div class="bg-red-50 p-3 border-b border-red-100 hidden sm:block">
-                    <span class="font-bold text-xl text-red-800">貸切風呂清掃の注意点</span>
-                </div>
-                <div class="p-5 space-y-4">
-                    <div class="flex items-start">
-                        <div class="bg-red-100 p-2 rounded-full mr-3 shrink-0">
-                            <i class="fa-solid fa-id-card text-red-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">お客様案内カード・タオル配置</h4>
-                            <p class="text-sm text-gray-600 mt-1">
-                                カードは<strong>洗面台の真横</strong>に置き、その少し隣にタオルをセットする。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="bg-red-100 p-2 rounded-full mr-3 shrink-0">
-                            <i class="fa-solid fa-lightbulb text-red-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">トイレの電気</h4>
-                            <p class="text-sm text-gray-600 mt-1">
-                                電気は消さずに、<strong>つけたまま</strong>にしておく。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="bg-red-100 p-2 rounded-full mr-3 shrink-0">
-                            <i class="fa-solid fa-plug text-red-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">オイルヒーター</h4>
-                            <p class="text-sm text-gray-600 mt-1">
-                                <strong>電源コードが見える向き</strong>で置いておく。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- 20:00 Section -->
         <div class="mb-8 relative sm:pl-16">
             <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full text-white font-bold time-dot shadow-lg">
                 20
             </div>
-            <div class="bg-white rounded-lg shadow-sm border-l-8 border-blue-600 overflow-hidden">
-                <div class="bg-blue-50 p-3 border-b border-blue-100 flex justify-between items-center sm:hidden">
-                    <span class="font-bold text-xl text-blue-800">20:00 出勤時</span>
+            
+            <!-- Section Header for Mobile -->
+            <div class="bg-blue-50 p-3 border-l-8 border-blue-600 mb-2 rounded-r sm:hidden flex justify-between items-center">
+                <span class="font-bold text-xl text-blue-800">20:00 出勤時</span>
+            </div>
+
+            <!-- Tasks Container -->
+            <div class="space-y-3">
+
+                <!-- 1. 温度チェック・清掃 (Temperature Check) -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-blue-400">
+                    <h3 class="font-bold text-gray-700 mb-2 border-b pb-1 pointer-events-none">
+                        <i class="fa-solid fa-temperature-half text-blue-500 mr-2"></i>温度チェック・清掃
+                    </h3>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-600 pointer-events-none">
+                        <li>冷蔵庫・冷凍庫の温度チェック</li>
+                        <li>貸切風呂清掃 <span class="text-xs bg-red-100 text-red-600 px-1 rounded ml-1">予約詰まり優先</span></li>
+                        <li>倉庫/キッチン/バー/売店 清掃チェックリスト参照</li>
+                    </ul>
                 </div>
-                <div class="p-4 space-y-4">
-                    <!-- Task Block -->
-                    <div>
-                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">貸切玄関ポーチ・看板</h3>
-                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
-                            <li>自動ドアOFF、扉カギ閉め</li>
-                            <li>看板を室内へ移動</li>
-                        </ul>
-                    </div>
-                    <!-- Task Block -->
-                    <div>
-                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">タオル類洗濯</h3>
-                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
-                            <li>キッチン、玄関、足湯のタオル回収</li>
-                            <li>倉庫の白い袋に入っているタオルを洗濯</li>
-                            <li>キッチンダスターも洗濯</li>
-                            <li>洗濯終わり次第干す</li>
-                        </ul>
-                    </div>
-                    <!-- Task Block -->
-                    <div>
-                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">温度チェック・清掃</h3>
-                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
-                            <li>冷蔵庫・冷凍庫の温度チェック</li>
-                            <li>貸切風呂清掃 <span class="text-xs bg-red-100 text-red-600 px-1 rounded ml-1">予約詰まり優先</span></li>
-                            <li>倉庫/キッチン/バー/売店 清掃チェックリスト参照</li>
-                        </ul>
-                    </div>
+
+                <!-- 2. タオル類洗濯 (Towel Laundry) -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-blue-400">
+                    <h3 class="font-bold text-gray-700 mb-2 border-b pb-1 pointer-events-none">
+                        <i class="fa-solid fa-shirt text-blue-500 mr-2"></i>タオル類洗濯
+                    </h3>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-600 pointer-events-none">
+                        <li>キッチン、玄関、足湯のタオル回収</li>
+                        <li>倉庫の白い袋に入っているタオルを洗濯</li>
+                        <li>キッチンダスターも洗濯</li>
+                        <li>洗濯終わり次第干す</li>
+                    </ul>
                 </div>
+
+                <!-- 3. 貸切玄関ポーチ・看板 (Porch/Signboard) -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-blue-400">
+                    <h3 class="font-bold text-gray-700 mb-2 border-b pb-1 pointer-events-none">
+                        <i class="fa-solid fa-door-closed text-blue-500 mr-2"></i>貸切玄関ポーチ・看板
+                    </h3>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-600 pointer-events-none">
+                        <li>自動ドアOFF、扉カギ閉め</li>
+                        <li>看板を室内へ移動</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
@@ -143,43 +134,67 @@
             <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-full text-white font-bold time-dot shadow-lg">
                 22
             </div>
-            <div class="bg-white rounded-lg shadow-sm border-l-8 border-indigo-600 overflow-hidden">
-                <div class="bg-indigo-50 p-3 border-b border-indigo-100 sm:hidden">
-                    <span class="font-bold text-xl text-indigo-800">22:00〜</span>
-                </div>
-                <div class="p-4 space-y-4">
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="bg-gray-50 p-3 rounded">
-                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-store text-indigo-500 mr-1"></i>売店の施錠</h4>
-                            <p class="text-xs text-gray-600">施錠し、close札をかける</p>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded">
-                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-key text-indigo-500 mr-1"></i>マスターキー引継ぎ</h4>
-                            <p class="text-xs text-gray-600">フロント右側の釣銭準備金を金庫に入れ施錠</p>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded">
-                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-mobile-screen text-indigo-500 mr-1"></i>スマホ動作確認</h4>
-                            <p class="text-xs text-gray-600">呼出音が鳴るか確認 → 支配人へLINE</p>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded">
-                            <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-trash text-indigo-500 mr-1"></i>ゴミ回収/捨てる</h4>
-                            <p class="text-xs text-gray-600">事務所(シュレッダー)/倉庫/バー/フロント/キッチン(段ボール)</p>
-                        </div>
-                    </div>
+            
+            <!-- Section Header for Mobile -->
+            <div class="bg-indigo-50 p-3 border-l-8 border-indigo-600 mb-2 rounded-r sm:hidden">
+                <span class="font-bold text-xl text-indigo-800">22:00〜</span>
+            </div>
 
-                    <div>
-                        <h3 class="font-bold text-gray-700 mb-2 border-b pb-1">朝食セッティング・清掃</h3>
-                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
-                            <li>皿、メニュー立て、トレー、トースター、ウォーマーなど</li>
-                            <li>通用口施錠・水拭き清掃（スタッフ出入り口）</li>
-                            <li>パブリックトイレ・喫煙室清掃（鏡・便座拭き・ゴミ回収・ペーパー三角折り・灰皿の水入れ替え）</li>
-                        </ul>
-                    </div>
+            <!-- Tasks Container -->
+            <div class="space-y-3">
+                
+                <!-- 売店の施錠 -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-store text-indigo-500 mr-2"></i>売店の施錠</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">施錠し、close札をかける</p>
                 </div>
+
+                <!-- マスターキー引継ぎ -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-key text-indigo-500 mr-2"></i>マスターキー引継ぎ</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">フロント右側の釣銭準備金を金庫に入れ施錠</p>
+                </div>
+
+                <!-- スマホ動作確認 -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-mobile-screen text-indigo-500 mr-2"></i>スマホ動作確認</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">呼出音が鳴るか確認 → 支配人へLINE</p>
+                </div>
+
+                <!-- ゴミ回収 (1) -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-trash text-indigo-500 mr-2"></i>ゴミ回収</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">事務所(シュレッダー)/倉庫/バー/フロント/キッチン(段ボール)</p>
+                </div>
+
+                <!-- 朝食準備 -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-utensils text-indigo-500 mr-2"></i>朝食準備</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">皿、メニュー立て、トレー、トースター、ウォーマーなど</p>
+                </div>
+
+                <!-- トイレ、喫煙所清掃 -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-toilet text-indigo-500 mr-2"></i>トイレ、喫煙所清掃</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">パブリックトイレ・喫煙室清掃（鏡・便座拭き・ゴミ回収・ペーパー三角折り・灰皿の水入れ替え）</p>
+                </div>
+
+                 <!-- 通用口 -->
+                 <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-door-open text-indigo-500 mr-2"></i>通用口</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">通用口施錠・水拭き清掃（スタッフ出入り口）</p>
+                </div>
+
+                <!-- ゴミ回収 (2) -->
+                <div class="swipe-card bg-white rounded-lg shadow p-4 border-l-4 border-indigo-400">
+                    <h4 class="font-bold text-gray-800 pointer-events-none"><i class="fa-solid fa-trash-can text-indigo-500 mr-2"></i>ゴミ回収 (その他)</h4>
+                    <p class="text-xs text-gray-600 mt-1 pointer-events-none">回収漏れがないか最終チェック</p>
+                </div>
+
             </div>
         </div>
 
-        <!-- 23:00 / 24:00 Section -->
+        <!-- 23:00 / 24:00 Section (Normal View) -->
         <div class="mb-8 relative sm:pl-16">
              <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-purple-600 rounded-full text-white font-bold time-dot shadow-lg">
                 23
@@ -207,7 +222,7 @@
             </div>
         </div>
 
-        <!-- 1:00 Section -->
+        <!-- 1:00 Section (Normal View) -->
         <div class="mb-8 relative sm:pl-16">
             <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-pink-600 rounded-full text-white font-bold time-dot shadow-lg">
                 01
@@ -232,7 +247,7 @@
             </div>
         </div>
 
-        <!-- 2:00 Section -->
+        <!-- 2:00 Section (Normal View) -->
         <div class="mb-8 relative sm:pl-16">
              <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-orange-500 rounded-full text-white font-bold time-dot shadow-lg">
                 02
@@ -261,7 +276,7 @@
             </div>
         </div>
 
-        <!-- 5:00 Section -->
+        <!-- 5:00 Section (Normal View) -->
         <div class="mb-8 relative sm:pl-16">
              <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-yellow-500 rounded-full text-white font-bold time-dot shadow-lg">
                 05
@@ -282,7 +297,6 @@
                         </div>
                     </div>
                     
-                    <!-- NEW: Bath Mat Section -->
                     <div class="bg-blue-50 border border-blue-200 p-2 rounded text-sm">
                         <span class="font-bold block text-blue-800"><i class="fa-solid fa-rug mr-1"></i>バスマット配置</span>
                         <div class="flex justify-between mt-1 px-2">
@@ -318,7 +332,7 @@
             </div>
         </div>
 
-        <!-- 6:00 / 7:00 Section -->
+        <!-- 6:00 / 7:00 Section (Normal View) -->
          <div class="mb-20 relative sm:pl-16">
              <div class="absolute left-0 top-0 hidden sm:flex items-center justify-center w-12 h-12 bg-green-600 rounded-full text-white font-bold time-dot shadow-lg">
                 06
@@ -328,7 +342,7 @@
                     <span class="font-bold text-xl text-green-800">06:00 / 07:00</span>
                 </div>
                 <div class="p-4 space-y-4">
-                     <!-- 6:00 -->
+                      <!-- 6:00 -->
                     <div>
                         <div class="bg-green-100 text-green-800 font-bold px-2 py-1 rounded w-max text-xs mb-2">06:00〜</div>
                         <ul class="list-none text-sm space-y-2 text-gray-600">
@@ -360,5 +374,91 @@
         <p class="font-bold text-lg"><i class="fa-solid fa-triangle-exclamation mr-2"></i>全て時間通りに行う</p>
     </div>
 
+    <!-- Swipe Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.swipe-card');
+
+            cards.forEach(card => {
+                let startX = 0;
+                let currentX = 0;
+                let isDragging = false;
+                const threshold = 100; // Swipe threshold distance
+
+                // Touch Events
+                card.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    card.style.transition = 'none'; // Disable transition for direct following
+                });
+
+                card.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.touches[0].clientX;
+                    const diff = currentX - startX;
+                    
+                    // Only move horizontally if swipe is somewhat significant
+                    // Prevent vertical scroll interference could be added here if needed
+                    
+                    card.style.transform = `translateX(${diff}px)`;
+                    
+                    // Opacity feedback
+                    const opacity = 1 - Math.abs(diff) / 300;
+                    card.style.opacity = Math.max(opacity, 0.2);
+                });
+
+                card.addEventListener('touchend', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    finishSwipe();
+                });
+
+                // Mouse Events (for Desktop compatibility)
+                card.addEventListener('mousedown', (e) => {
+                    startX = e.clientX;
+                    isDragging = true;
+                    card.style.cursor = 'grabbing';
+                    card.style.transition = 'none';
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.clientX;
+                    const diff = currentX - startX;
+                    card.style.transform = `translateX(${diff}px)`;
+                    const opacity = 1 - Math.abs(diff) / 300;
+                    card.style.opacity = Math.max(opacity, 0.2);
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        card.style.cursor = 'grab';
+                        finishSwipe();
+                    }
+                });
+
+                function finishSwipe() {
+                    const diff = currentX - startX;
+
+                    if (Math.abs(diff) > threshold) {
+                        // Remove card
+                        card.classList.add('removing');
+                        // Ensure it flies off in the direction of the swipe
+                        card.style.transform = `translateX(${diff > 0 ? 100 : -100}%)`;
+                        
+                        setTimeout(() => {
+                            card.remove();
+                        }, 300); // Match CSS transition time
+                    } else {
+                        // Return to center
+                        card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                        card.style.transform = 'translateX(0)';
+                        card.style.opacity = '1';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
