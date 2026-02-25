@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - SimpleTodo Companion</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      background: #fff;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .updated { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
+    h2 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+    h3 { font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p, li { margin: 0.5rem 0; }
+    ul { padding-left: 1.5rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f5f5f5; font-weight: 600; }
+    a { color: #1976d2; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy for SimpleTodo Companion</h1>
+  <p class="updated"><strong>Last updated:</strong> February 25, 2025</p>
+
+  <h2>Overview</h2>
+  <p>SimpleTodo Companion ("the Extension") is a browser extension that provides a todo list and Pomodoro focus timer in a side panel. This policy describes how we collect, use, and protect your information.</p>
+
+  <h2>Information We Collect</h2>
+
+  <h3>Information You Provide</h3>
+  <ul>
+    <li><strong>Account data:</strong> When you create an account or sign in, you provide your email address and password. This is processed by Firebase Authentication (Google).</li>
+    <li><strong>Task data:</strong> You voluntarily provide task titles, descriptions, due dates, recurrence settings, and reminder times. This is stored in Firebase Firestore (Google).</li>
+    <li><strong>Focus tasks:</strong> Tasks you add for Pomodoro prep sessions (e.g., "30s meditation") are stored in Firestore.</li>
+  </ul>
+
+  <h3>Automatically Stored Data (Local Only)</h3>
+  <ul>
+    <li><strong>Pomodoro timer state:</strong> The extension stores timer state locally on your device using Chrome's local storage. This includes remaining time, pause status, duration, and your user ID—only so the timer can continue running when the side panel is closed. This data never leaves your device and is not transmitted to our servers or any third party.</li>
+  </ul>
+
+  <h2>How We Use Your Information</h2>
+  <ul>
+    <li><strong>To provide the service:</strong> Your account and task data are used to display your todos, sync them across sessions, and enable the Pomodoro timer with focus logging.</li>
+    <li><strong>To authenticate you:</strong> Your email and password are used solely to sign you in and verify your identity.</li>
+    <li><strong>To store and sync tasks:</strong> Task data is stored and synced via Firebase so you can access your todos from the extension (and, if applicable, other SimpleTodo apps).</li>
+  </ul>
+
+  <h2>Third-Party Services</h2>
+  <p>The Extension uses <strong>Firebase</strong> (a Google service) for:</p>
+  <ul>
+    <li><strong>Firebase Authentication:</strong> Account creation and sign-in</li>
+    <li><strong>Cloud Firestore:</strong> Storing and syncing your tasks and focus tasks</li>
+  </ul>
+  <p>Use of Firebase is subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. We do not control how Google collects or processes data when you use Firebase.</p>
+
+  <h2>Permissions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Permission</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>storage</strong></td>
+        <td>Saves Pomodoro timer state locally so it continues when the side panel is closed. Data stays on your device.</td>
+      </tr>
+      <tr>
+        <td><strong>sidePanel</strong></td>
+        <td>Provides the main extension interface (todo list and Pomodoro timer) in a side panel.</td>
+      </tr>
+      <tr>
+        <td><strong>alarms</strong></td>
+        <td>Triggers when the Pomodoro timer finishes, so a focus log can be added to your tasks even if the panel is closed.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Data Sharing</h2>
+  <p>We do not sell your personal information. Task data and account data are stored in Firebase and used only to operate the Extension. We do not share your data with advertisers or third parties for marketing purposes.</p>
+
+  <h2>Data Security</h2>
+  <ul>
+    <li>Authentication and Firestore access are handled through Firebase's secure infrastructure.</li>
+    <li>Passwords are processed by Firebase Authentication and are not stored in plain text.</li>
+    <li>Local storage data (Pomodoro state) remains on your device and is not transmitted externally.</li>
+  </ul>
+
+  <h2>Data Retention</h2>
+  <ul>
+    <li><strong>Firestore (cloud):</strong> Task data is retained until you delete it or delete your account.</li>
+    <li><strong>Local storage:</strong> Pomodoro timer state is cleared when you reset the timer or sign out.</li>
+  </ul>
+
+  <h2>Your Rights</h2>
+  <p>You can:</p>
+  <ul>
+    <li>Delete individual tasks from within the Extension.</li>
+    <li>Sign out to stop syncing and clear local timer state.</li>
+    <li>Contact us if you want to request deletion of your account and associated data.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>The Extension is not directed at children under 13. We do not knowingly collect information from children under 13.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top will be revised when changes are made. Continued use of the Extension after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>For privacy-related questions or requests, please contact us through the contact method provided in the extension listing or the SimpleTodo app.</p>
+</body>
+</html>
